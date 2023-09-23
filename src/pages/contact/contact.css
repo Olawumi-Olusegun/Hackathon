@@ -200,7 +200,7 @@ form {
     margin: 0 auto;
     margin-top: calc(4rem + 90px);
     width: 100%;
-    height: calc(100vh - 90px);
+    /* height: calc(100vh - 90px); */
     padding: 1rem 1.5rem;
   }
 
