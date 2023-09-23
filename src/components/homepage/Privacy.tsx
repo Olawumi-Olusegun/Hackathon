@@ -1,4 +1,4 @@
-import React from 'react'
+
 import checkIcon from './../../assets/images/check.svg';
 import guard from './../../assets/images/gaurd.png';
 import security from './../../assets/images/security.png';

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import idea from './../../assets/images/idea.png';
 import idea_star from './../../assets/images/idea_star.svg';
 import arrow from './../../assets/images/arrow.svg';

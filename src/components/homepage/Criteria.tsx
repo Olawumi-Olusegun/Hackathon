@@ -1,4 +1,4 @@
-import React from 'react'
+
 import criteriaImage from './../../assets/images/criteria_image.png';
 import faq_star from './../../assets/images/faq_star.svg';
 

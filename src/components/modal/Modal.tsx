@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import './modal.css'
 
 import successMan from './../../assets/images/modal/successful-man.svg';

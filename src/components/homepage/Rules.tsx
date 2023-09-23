@@ -1,4 +1,4 @@
-import React from 'react'
+
 import rulesRightImage from './../../assets/images/rules_right_image.png';
 import rules_star from './../../assets/images/rules_star.svg';
 import rules_star2 from './../../assets/images/rules_star2.svg';

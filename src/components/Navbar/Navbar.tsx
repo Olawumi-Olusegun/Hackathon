@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import  { useEffect, useState } from 'react'
 
 import './Navbar.css'
 import { Link } from 'react-router-dom'

@@ -1,4 +1,3 @@
-import React from 'react'
 
 import smartGear from './../../assets/images/man-wearing-smart-glasses-touching-virtual-screen.png';
 import spark from './../../assets/images/world-spark.png';

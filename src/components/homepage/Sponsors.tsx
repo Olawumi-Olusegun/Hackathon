@@ -1,4 +1,4 @@
-import React from 'react'
+
 import PartnerAndSponsors from './../../assets/images/PartnerandSponsors.png';
 import rewards_star4 from './../../assets/images/rewards__star4.svg';
 import star1 from './../../assets/images/star1.svg';

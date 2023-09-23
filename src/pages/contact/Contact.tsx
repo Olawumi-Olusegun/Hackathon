@@ -1,8 +1,3 @@
-import React from 'react'
-import registerVector from './../../assets/images/registerationVector.svg'
-
-import movement from './../../assets/images/movement.svg'
-import movementMale from './../../assets/images/movementMale.svg'
 
 import reg_star1 from './../../assets/images/reg/reg_star1.svg';
 import reg_star2 from './../../assets/images/reg/reg_star2.svg';

@@ -1,8 +1,5 @@
-import React from 'react'
+
 import rewards_left from './../../assets/images/rewards_left.png';
-import FirstdPosition from './../../assets/images/1stPosition.png';
-import secondPosition from './../../assets/images/2ndPosition.png';
-import ThirdPosition from './../../assets/images/3rdPosition.png';
 import rewards_star1 from './../../assets/images/rewards_star1.svg';
 import rewards_star2 from './../../assets/images/rewards__star2.svg';
 import rewards_star3 from './../../assets/images/rewards__star3.svg';

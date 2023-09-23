@@ -19,8 +19,8 @@ interface RegisterProps {
     phone_number: string;
     email: string;
     project_topic: string;
-    category?: string | null;
-    group_size?: string | null;
+    category: string;
+    group_size: string;
     checked: boolean;
     privacy_poclicy_accepted?: boolean;
 }
@@ -28,7 +28,7 @@ interface RegisterProps {
 const API_URL = import.meta.env.VITE_API_URL;
 
 
-const Register: React.FC<RegisterProps> = () => {
+const Register = () => {
 
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
@@ -37,7 +37,7 @@ const Register: React.FC<RegisterProps> = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [formState,setFormState] = useState({
+    const [formState,setFormState] = useState<RegisterProps>({
         team_name: "",
         phone_number: "",
         email: "",
@@ -90,6 +90,8 @@ const Register: React.FC<RegisterProps> = () => {
             }
 
             setIsLoading(false)
+
+            console.log(isSuccess)
             
         } catch (error) {
             setIsSuccess(false)

@@ -6,11 +6,6 @@ import x from './../../assets/images/x.svg';
 import facebook from './../../assets/images/facebook.svg';
 import linkdline from './../../assets/images/linkdline.svg';
 
-import footer_star1 from './../../assets/images/footer_star1.svg';
-import footer_star2 from './../../assets/images/footer_star2.svg';
-import footer_star3 from './../../assets/images/footer_star3.svg';
-import footer_star4 from './../../assets/images/footer_star4.svg';
-
 const Footer = () => {
   return (
     <div className="footer-wrapper">

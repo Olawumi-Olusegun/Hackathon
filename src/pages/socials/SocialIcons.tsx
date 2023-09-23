@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 const SocialIcons = () => {
   return (
     <div>
-        
+        <h2>Socials</h2>
     </div>
   )
 }
