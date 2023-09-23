@@ -783,7 +783,7 @@
       margin: 0 auto;
       margin-top: calc(2rem + 90px);
       width: 100%;
-      max-width: 1303px;
+       max-width: 1281px;
       height: 100vh;
      
     }
@@ -895,7 +895,7 @@
       position: relative;
       padding: 1rem 0 3rem 0;
       width: 100%;
-      max-width: 1303px;
+       max-width: 1281px;
       margin: 0 auto;
     }
 
@@ -984,7 +984,7 @@
       padding: 3rem 0;
 
       width: 100%;
-      max-width: 1303px;
+       max-width: 1281px;
       margin: 0 auto;
       position: relative;
     }
