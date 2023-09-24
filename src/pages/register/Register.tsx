@@ -66,7 +66,7 @@ const Register = () => {
     const fetchCategoryList = async () => {
         try {
             setIsLoading(true)
-            const response = await fetch(`${APIs?.baseUrl}/hackathon/categories-list`, {
+            const response = await fetch(`/hackathon/categories-list`, {
                 method:"GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
@@ -109,7 +109,7 @@ const Register = () => {
         try {
             setIsSuccess(false)
             setIsLoading(true)
-            const response = await fetch(`${APIs?.baseUrl}/hackathon/registration`, {
+            const response = await fetch(`/hackathon/registration`, {
                 method:"POST",
                 body: JSON.stringify(formReguest),
                 headers: {
