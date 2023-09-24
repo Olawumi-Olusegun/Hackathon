@@ -34,7 +34,6 @@
   margin-top: calc(1rem + 90px);
   width: 100%;
   padding: 2rem 1.5rem;
-  height: 100%;
 }
 
 .flex-cols {
@@ -70,6 +69,17 @@ form {
 
 .form-header h2, .form-header p  {
     text-align: center;
+}
+
+form * span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
+
+input:invalid ~ span {
+  display: block;
 }
 
 .movement__container  {
@@ -288,8 +298,9 @@ select option {
     }
 
     .flex-col:first-child img {
-        width: 717px;
-        align-self: center;
+        max-width: 717px;
+        width: 100%;
+        margin: 0 auto;
     }
     
    
@@ -371,18 +382,10 @@ select option {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        
     }
 
-    form * span {
-      font-size: 12px;
-      padding: 3px;
-      color: red;
-      display: none;
-    }
-    input:invalid ~ span {
-      display: block;
-    }
+
 
   /* positioning svg icons */
 
