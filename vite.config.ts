@@ -5,7 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      '/api': "https://backend.getlinked.ai"
+      '/api': {
+        target: "https://backend.getlinked.ai",
+        changeOrigin: true,
+        secure: false,      
+        ws: true,
+      }
+      
     }
   },
   plugins: [react()],
