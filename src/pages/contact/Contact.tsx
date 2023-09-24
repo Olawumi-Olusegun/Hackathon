@@ -58,7 +58,7 @@ const Contact = () => {
 
         try {
             setIsLoading(true)
-            const response = await fetch(`/hackathon/contact-form`, {
+            const response = await fetch(`${APIs?.baseUrl}/hackathon/contact-form`, {
                 method:"POST",
                 body: JSON.stringify(formReguest),
                 headers: {
