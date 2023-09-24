@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      '/api': "https://backend.getlinked.ai/hackathon/registration"
+      '/api': "https://backend.getlinked.ai"
     }
   },
   plugins: [react()],

@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import toast from 'react-hot-toast/headless';
 
 import reg_star1 from './../../assets/images/reg/reg_star1.svg';
 import reg_star2 from './../../assets/images/reg/reg_star2.svg';
@@ -11,12 +13,83 @@ import x from './../../assets/images/x.svg';
 import facebook from './../../assets/images/facebook.svg';
 import linkdline from './../../assets/images/linkdline.svg';
 
-
 import "./contact.css";
+import APIs from '../../utils/APIs';
+import Loader from '../../components/loader/Loader';
+
+
+
+
+interface ContactInputs {
+    email: string;
+    phone_number: string;
+    first_name: string;
+    message: string;
+}
 
 const Contact = () => {
+
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [formState, setFormState] = useState<ContactInputs>({
+        email:"",
+        phone_number: "",
+        first_name: "",
+        message: ""
+    });
+
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement >) => {
+        event.preventDefault();
+        const { name, value, } = event.target;
+        setFormState((prevState) => ({ ...prevState, [name]: value }));
+    }
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement> ) => {
+
+        event.preventDefault();
+
+        const formReguest = {
+            email:formState.email,
+            phone_number: formState.phone_number,
+            first_name: formState.first_name,
+            message: formState.message
+        }
+
+        try {
+            setIsLoading(true)
+            const response = await fetch(`${APIs?.baseUrl}/hackathon/contact-form`, {
+                method:"POST",
+                body: JSON.stringify(formReguest),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            } );
+
+            const data = await response.json();
+
+            console.log({ data })
+            setIsLoading(false)
+
+            toast.success("success😋")
+            
+        } catch (error) {
+            toast.error("An error occured😋!")
+        } finally {
+            setIsLoading(false)
+        }
+
+    }
+
+  
+
   return (
     <>
+        {isLoading 
+        ? (<Loader>  <span>submitting your data...</span>
+           </Loader> ) 
+        : null }
+
         <section id='contact__section'> 
 
             <div className="flex__container">
@@ -56,7 +129,7 @@ const Contact = () => {
                 <div className="flex-column right">
                     <div className="contact__form-container">
 
-                        <form action="" className='contact__form'>
+                        <form onSubmit={handleSubmit} className='contact__form'>
 
                         <div className='form-heading'>
                                 
@@ -73,20 +146,63 @@ const Contact = () => {
 
                             <div className='form__input-group'>
                                 <div className='form__input  my'>
-                                    <input className="" type="text" name="name" id="name" placeholder="First Name" required />
+                                    <input 
+                                    className="" 
+                                    type="text" 
+                                    name="first_name" 
+                                    value={formState.first_name}
+                                    id="name" 
+                                    placeholder="First Name" 
+                                    required 
+                                    onChange={handleChange}
+                                    />
                                 </div>
 
                                 <div className="form__input  my">
-                                    <input className="" type="email" name="emailAddress" id="emailAddress" placeholder="Mail" required  />
+                                    <input 
+                                    className="" 
+                                    type="email" 
+                                    name="email" 
+                                    value={formState.email}
+                                    id="emailAddress" 
+                                    placeholder="Email Address" 
+                                    required  
+                                    onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div className="form__input  my">
+                                    <input 
+                                    className="" 
+                                    type="text" 
+                                    name="phone_number" 
+                                    value={formState.phone_number}
+                                    id="emailAddress" 
+                                    placeholder="Phone number" 
+                                    required  
+                                    onChange={handleChange}
+                                    />
                                 </div>
 
                                 <div className="form__input">
-                                    <textarea placeholder='Message' name="" id="" cols={20} rows={4}></textarea>
+                                    <textarea 
+                                    placeholder='Message' 
+                                    name="message" 
+                                    id="" 
+                                    cols={20} 
+                                    rows={4} 
+                                    value={formState.message}
+                                    onChange={handleChange}></textarea>
                                 </div>
                             </div>
 
                             <div className=" btn-col">
-                                <button type='submit' className="btn">Submit</button>
+                                <button 
+                                type='submit'
+                                disabled={isLoading}
+                                className="btn">
+                                    { isLoading ? "submitting..." : "Submit"}
+                                </button>
                             </div>
 
                         {/* <div className=" hidden-footer-social">

@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast/headless';
+
 import registerVector from './../../assets/images/registerationVector.svg'
 
 import movement from './../../assets/images/movement.svg'
@@ -12,7 +15,9 @@ import reg_star5 from './../../assets/images/reg/reg_star5.svg';
 
 import "./register.css";
 import Modal from '../../components/modal/Modal';
-import { useNavigate } from 'react-router-dom';
+
+import APIs from '../../utils/APIs';
+import Loader from '../../components/loader/Loader';
 
 interface RegisterProps {
     team_name: string; 
@@ -25,13 +30,18 @@ interface RegisterProps {
     privacy_poclicy_accepted?: boolean;
 }
 
-const API_URL = import.meta.env.VITE_API_URL;
+interface CategoryList {
+    id: string;
+    name: string;
+}
 
 
 const Register = () => {
 
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+
+    const [categoryList, setCategoryList] = useState([]);
 
 
     const [isSuccess, setIsSuccess] = useState(false);
@@ -47,7 +57,32 @@ const Register = () => {
         checked: false,
     });
 
-    const goBack = () => navigate("/", { replace: true })
+    const goBack = () => navigate("/", { replace: true });
+
+
+    let buttonText: string = isLoading ? "Loading..." : "Submit";
+
+
+    const fetchCategoryList = async () => {
+        try {
+            setIsLoading(true)
+            const response = await fetch(`${APIs?.baseUrl}/hackathon/categories-list`, {
+                method:"GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            });
+
+            const data = await response.json();
+            toast.success("success")
+            if(data) setCategoryList(data);
+
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement >) => {
@@ -74,7 +109,7 @@ const Register = () => {
         try {
             setIsSuccess(false)
             setIsLoading(true)
-            const response = await fetch(API_URL, {
+            const response = await fetch(`${APIs?.baseUrl}/hackathon/registration`, {
                 method:"POST",
                 body: JSON.stringify(formReguest),
                 headers: {
@@ -84,9 +119,9 @@ const Register = () => {
 
             const data = await response.json();
 
-            // check response
             if(data && data?.id && data?.date_created) {
                 setShowModal(true)
+                toast.success("success")
             }
 
             setIsLoading(false)
@@ -94,17 +129,28 @@ const Register = () => {
             console.log(isSuccess)
             
         } catch (error) {
+            toast.error("An error occured!")
+        } finally {
             setIsSuccess(false)
             setIsLoading(false)
         }
 
-
-        
     }
+
+
+    useEffect(() => {
+        fetchCategoryList();
+    }, []);
+
 
 
   return (
     <>
+        {isLoading 
+        ? (<Loader>  <span>loading categories...</span>
+           </Loader> ) 
+        : null }
+
         { showModal ?  <Modal goBack={goBack} setShowModal={setShowModal} /> : null }
         <section id='reg-section' className="container"> 
 
@@ -210,11 +256,17 @@ const Register = () => {
                             name="category" 
                             id="category">
                                 <option>select group Category</option>
-                                <option value={1}>1</option>
-                                <option value={1}>2</option>
-                                <option value={3}>3</option>
+                                {
+                                    categoryList?.map((category: CategoryList) => (
+                                        <option 
+                                        key={category?.id} 
+                                        value={category?.id}>
+                                            {category?.name}
+                                        </option>
+                                    ))
+                                }
                             </select>
-                            <span>Select categrory</span>
+                            <span>Select a categrory</span>
                         </div>
 
                         <div className="form-col size ">
@@ -227,9 +279,9 @@ const Register = () => {
                             name="group_size" 
                             id="group_size">
                                 <option>select group size</option>
-                                <option value={1}>MOBILE</option>
-                                <option value={1}>WEB</option>
-                                <option value={3}>UI/UX</option>
+                                <option value={1}>1</option>
+                                <option value={1}>2</option>
+                                <option value={3}>3</option>
                             </select>
                             <span>Select Group size</span>
                         </div>
@@ -266,8 +318,8 @@ const Register = () => {
 
                         <div className="form-row">
                             <div className="form-col btn-col">
-                                <button type='submit' className="btn">
-                                    { isLoading ? "submiting" : "Submit" }
+                                <button type='submit' className="btn" disabled={isLoading}>
+                                    {buttonText}
                                 </button>
                             </div>
                         </div>
