@@ -8,10 +8,10 @@ interface Loader {
 
 const Loader: React.FC<Loader> = ({ children }) => {
   return (
-    <div className='loader-wrapper'>
+    <div className='loader__wrapper'>
       <div className='loader__container'>
-        <div className='loader' />
-        {children}
+        <div className='loader'></div>
+          {children}
       </div>
     </div>
   )
